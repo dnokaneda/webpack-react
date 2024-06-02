@@ -1,3 +1,5 @@
+#### phase one
+
 npm init -y
 npm install react react-dom 
 npm install webpack webpack-cli webpack-dev-server html-webpack-plugin style-loader css-loader
@@ -9,3 +11,15 @@ config index.html
 config app and index js
 
 git init
+
+#### phase two
+
+## resolver cache
+npm install --save-dev clean-webpack-plugin
+
+## resolver css
+npm install --save-dev mini-css-extract-plugin
+
+npm uninstall style-loader
+npm uninstall webpack-dev-server
+npm install --save-dev webpack-dev-server
