@@ -1,0 +1,11 @@
+npm init -y
+npm install react react-dom 
+npm install webpack webpack-cli webpack-dev-server html-webpack-plugin style-loader css-loader
+npm install @babel/core @babel/plugin-proposal-class-properties @babel/preset-react @babel/preset-env babel-loader
+
+config babel
+config webpack
+config index.html
+config app and index js
+
+git init
