@@ -4,7 +4,28 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    // EXEMPLO DE IMPORTAÇÃO DUPLA DE COMPONENTES NAS PAGINAS
+
+    // index: './src/index.js',
+    // home: './src/pages/home/index.js',
+    // contact: './src/pages/contact/index.js',
+
+    // CORREÇÃO DO ERRO ACIMA
+    index: {
+      import: './src/index.js',
+      dependOn: 'components'
+    },
+    home: {
+      import: './src/pages/home/index.js',
+      dependOn: 'components'
+    },
+    contact: {
+      import: './src/pages/contact/index.js',
+      dependOn: 'components'
+    },
+    components: './src/components/index.js'
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     // RESOLVE QUESTÃO DE CACHE DO PROJETO
@@ -26,7 +47,8 @@ module.exports = {
       {
         test: /\.css$/,
         // SEPARA ARQUIVO CSS
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        include: path.resolve(__dirname, 'src')
       }
     ]
   },
@@ -37,9 +59,13 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: './styles.[contenthash].css'
     }),
+    // CRIA HTML DINAMICAMENTE COM BASE NO TEMPLATE EM PUBLIC
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
       filename: 'index.html'
     })
-  ]
+  ],
+  optimization: {
+    runtimeChunk: true
+  }
 }
