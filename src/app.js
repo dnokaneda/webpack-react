@@ -18,7 +18,14 @@ const App = () => {
     },
   ])
 
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <RouterProvider router={router} />
+      <br />
+      <p><b>ENV MODE:</b> { process.env.MODE }</p>
+      <p><b>ENV API_KEY:</b> { process.env.API_KEY }</p>
+    </>
+  )
 }
 
 export default App

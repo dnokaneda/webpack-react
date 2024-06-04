@@ -2,16 +2,19 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const DotEnvPlugin = require('dotenv-webpack')
 
 module.exports = {
   entry: {
-    // EXEMPLO DE IMPORTAÇÃO DUPLA DE COMPONENTES NAS PAGINAS
-
+    // CODE SPLITTING
+    // FORMA ERRADA 
+  
     // index: './src/index.js',
     // home: './src/pages/home/index.js',
     // contact: './src/pages/contact/index.js',
 
-    // CORREÇÃO DO ERRO ACIMA
+    // CODE SPLITTING
+    // FORMA CORRETA (COMPONENTES EM COMUM EXPORTADOS SEPARADAMENTE)
     index: {
       import: './src/index.js',
       dependOn: 'components'
@@ -63,7 +66,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
       filename: 'index.html'
-    })
+    }),
+    new DotEnvPlugin({ path: './.env.development' })
   ],
   optimization: {
     runtimeChunk: true

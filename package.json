@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "dev": "webpack serve"
+    "dev": "webpack --config webpack.dev.config.js",
+    "prod": "webpack --config webpack.production.config.js",
+    "serve": "webpack serve --config webpack.dev.config.js"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +29,7 @@
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
+    "dotenv-webpack": "^8.1.0",
     "mini-css-extract-plugin": "^2.9.0",
     "webpack-dev-server": "^5.0.4"
   }
